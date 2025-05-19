@@ -14,6 +14,7 @@ def numerical_multi(func, x):
     delta_y = np.zero_like(x)
     for i in range(x.size()):
         # h(x + h)
+        pass
 
 def function_1(x):
     y = 0.01 * x**2 + 0.1 * x
