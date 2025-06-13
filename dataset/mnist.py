@@ -18,7 +18,7 @@ key_file = {
     'test_label':'t10k-labels-idx1-ubyte.gz'
 }
 
-dataset_dir = os.path.dirname(os.path.abspath(__file__))
+dataset_dir = os.path.dirname(os.path.abspath(__file__)) + "/mnist"
 save_file = dataset_dir + "/mnist.pkl"
 
 train_num = 60000
@@ -72,7 +72,7 @@ def _convert_numpy():
     return dataset
 
 def init_mnist():
-    download_mnist()
+    # download_mnist()
     dataset = _convert_numpy()
     print("Creating pickle file ...")
     with open(save_file, 'wb') as f:
@@ -102,6 +102,7 @@ def load_mnist(normalize=True, flatten=True, one_hot_label=False):
     -------
     (训练图像, 训练标签), (测试图像, 测试标签)
     """
+    # print(f"dataset_dir = {dataset_dir}")
     if not os.path.exists(save_file):
         init_mnist()
         
