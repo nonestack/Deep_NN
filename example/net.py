@@ -1,4 +1,6 @@
 import numpy as np
+from utils import sigmoid, softmax
+from utils import mean_squared_error, cross_entropy_error
 
 class net:
     def __init__(self, layer_size, weight_init_std = 0.01):
@@ -15,11 +17,19 @@ class net:
         print(f"net has {len(layer_size)} layers")
 
     def predict(self, x):
+        y = x
+        for i in range(len(self.w_list) - 1):
+            y = np.dot(y, self.w_list[i]) + self.b_list[i]
+            y = sigmoid(y)
         
-        pass
+        y = np.dot(y, self.w_list[-1]) + self.b_list[-1]
+        y = softmax(y)
+        return y
 
     def loss(self, x, t):
-        pass
+        y = self.predict(x)
+        l = mean_squared_error(y, t)
+        return l
 
     def gradient(self, x, t):
         pass
